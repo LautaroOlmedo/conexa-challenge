@@ -8,9 +8,8 @@ describe('RegisterUserController', () => {
   let registerUserMock: Partial<RegisterUser>;
 
   beforeEach(async () => {
-    // Creamos un mock de RegisterUser
     registerUserMock = {
-      execute: jest.fn().mockResolvedValue(undefined), // Simulamos que el método execute siempre se resuelve correctamente
+      execute: jest.fn().mockResolvedValue(undefined),
     };
 
     const moduleRef: TestingModule = await Test.createTestingModule({
@@ -18,7 +17,7 @@ describe('RegisterUserController', () => {
       providers: [
         {
           provide: RegisterUser,
-          useValue: registerUserMock, // Usamos el mock en lugar de la implementación real
+          useValue: registerUserMock,
         },
       ],
     }).compile();
