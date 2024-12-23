@@ -9,8 +9,13 @@ export class RegisterUser {
   constructor(private readonly userRepository: UserRepository) {}
 
   public async execute(dto: RegisterUserDTO): Promise<void> {
-    const user: User = User.create(dto); // ---> instancia del nuevo user
-    console.log('user: ', user);
-    await this.userRepository.register(user);
+    try {
+      const user: User = User.create(dto); // ---> instancia del nuevo user
+      console.log('user: ', user);
+      await this.userRepository.register(user);
+    } catch (e) {
+      console.log('register user error: ', e.message);
+      throw new Error('service error: cannot register a user');
+    }
   }
 }
